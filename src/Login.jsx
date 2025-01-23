@@ -2,7 +2,7 @@ import { useContext, useState } from "react"
 import { Contexts } from "./Contexts"
 import axios from "axios"
 import { Eye, EyeSlash } from "react-bootstrap-icons"
-
+import "./login.css"
 export default function Login(){
     const{setPage,url,setUser,setPop}=useContext(Contexts)
     const[email,setEmail]=useState()
