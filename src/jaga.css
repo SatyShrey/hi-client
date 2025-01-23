@@ -1,0 +1,107 @@
+.jaga{
+    background-color: aliceblue;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    .mukut{
+       display: flex;
+       flex-direction: column;
+       align-items: center;
+       .div1{
+        width: 30px;
+     }
+     .div2{
+         width: 80px;
+     }
+     .div3{
+         width: 130px;
+     }
+     .mukut-jhumka{
+         display: flex;
+         justify-content: space-between;
+         width: 150px;
+         height: 10px;
+         background-color: rgb(255, 220, 20);
+         .jhumka1, .jhumka2{
+            color: yellow;
+            display: flex;
+            flex-direction: column;
+            line-height: 4px;
+            word-spacing: 1px;
+         }
+     }
+    }
+    .div1, .div2, .div3{
+       background-color: rgb(255, 220, 20);
+       height: 17px;
+       border-radius: 20px 20px 0px 0px;
+    }
+    .head{
+        background-color: black;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: fit-content;
+        margin: auto;
+        border-radius: 0px 0px 40% 40%;
+    }
+    .eyes{
+        display: flex;
+        justify-content: space-around;
+    }
+    .pupil{
+        margin: 10px;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: black;
+    }
+    .siraa{
+        color: red;
+        font-weight: bold;
+        font-size: 20px;
+    }
+    .eye1,.eye2{
+        background-color: aliceblue;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 3px solid red;
+        margin: 0px 10px;
+    }
+    .nose{
+        width: 10px;
+        height: 4px;
+        background-color: aliceblue;
+    }
+    .lip{
+        margin: 20px 0px;
+        width: 60px;
+        height: 30px;
+        margin-top:-7px;
+        border-radius: 50%;
+        border-bottom:7px solid red;
+    }
+    .hands{
+        display: flex;
+        margin: auto;
+        justify-content: space-between;
+        margin-top: -21px;
+        width: 200px;
+    }
+    .hand1, .hand2{
+        width: 45px;
+        height: 45px;
+        background-color:yellow;
+        border-radius: 50%;
+    }
+    .stomach{
+        width: 150px;
+        height: 150px;
+        margin: auto;
+        background-color: black;
+        border-radius: 40px 40px 0px 0px;
+    }
+}
