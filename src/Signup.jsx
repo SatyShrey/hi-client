@@ -1,7 +1,6 @@
 import { useContext, useState } from "react"
 import { Contexts } from "./Contexts"
 import axios from "axios"
-import "./login.css"
 import { Eye, EyeSlash } from "react-bootstrap-icons"
 export default function Signup(){
     const{setPage,url,setPop}=useContext(Contexts)
