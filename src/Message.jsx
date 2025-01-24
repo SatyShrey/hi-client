@@ -30,7 +30,7 @@ export default function Message(){
                 <Person size={25}/>
                 <div>
                     <b>{user2.name}</b>
-                    {onlineUsers.includes(user2.email) ? <small style={{color:"green"}}>online</small>:<small style={{color:"gray"}}>offline</small> }
+                    {onlineUsers.includes(user2.email) ? <small style={{color:"green"}}>online</small>:'' }
                 </div>
             </div>
             <div className="messageBox">

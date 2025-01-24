@@ -21,9 +21,56 @@ export function Provider({ children }) {
     let url = "https://chatapp-vspu.onrender.com/"
     //url="http://localhost:6060/"
 
+    function socketIo() {
+
+        const socket = io.connect(url, ({ query: { email: user.email } }));
+        socket.on('connect', () => {
+
+            //fetch online users from socket.io-server
+            socket.on('onlineUsers', (data) => {
+                setOnlineUsers(data)
+            })
+
+            //fetch recent online user
+            socket.on('online', (data) => {
+                setOnlineUsers((onlineUsers) => {
+                    return [...onlineUsers, data]
+                })
+            })
+
+            //offline user remove from the online user array
+            socket.on('offline', async(data) => {
+                var a=onlineUsers
+                await a.pop(data)
+                setOnlineUsers(a)
+            })
+
+            //fetch all users from database
+            setPop({ type: "loading", theme: ["rgb(0, 185, 255)", "rgb(34,34,43)"], message: "Loading page please wait..." })
+            axios.get(url + "users").then((data) => {
+                setUsers(data.data.filter(data => data.email !== user.email))
+                setPop('')
+            }).catch(err => { setPop({ type: "error", message: err.message }) })
+
+            //fetch user chats from database
+            axios.get(url + "chats/" + user.email).then((data) => {
+                setChats(data.data)
+            }).catch(err => { setPop({ type: "error", message: err.message }) })
+
+            //send online status
+            socket.on('chat', (data) => {
+                setChats((chats) => { return [...chats, data] });
+                receiveTone.play()
+            });
+        })
+        //disconnect the client from server
+        window.addEventListener('offline',()=>{socket.disconnect()})
+    }
+
+    //check the logged in user
     useEffect(() => {
         if (sessionStorage.getItem('email') && sessionStorage.getItem('name')) {
-            setUser({ 
+            setUser({
                 name: sessionStorage.getItem("name"),
                 email: sessionStorage.getItem("email")
             })
@@ -32,49 +79,13 @@ export function Provider({ children }) {
     }, [])
 
     useEffect(() => {
-        try {//..........................................
-            if (user) {
-                const socket = io.connect(url, ({ query: { email: user.email } }));
-                socket.on('connect', () => {
-                    //fetch online users from socket.io-server
-                    socket.on('onlineUsers', (data) => {
-                        setOnlineUsers(data)
-                    })
-                    //fetch recent online user
-                    socket.on('online', async (data) => {
-                        setOnlineUsers((onlineUsers)=>{
-                            return [...onlineUsers,data]
-                        })
-                    })
-                    //offline user remove from the online user array
-                    socket.on('offline', (data) => {
-                        setOnlineUsers((onlineUsers)=>{
-                            return onlineUsers.filter(a=>a !== data)
-                        })
-                    })
-                    //fetch all users from database
-                    setPop({type:"loading",theme:["rgb(0, 185, 255)", "rgb(34,34,43)"],message:"Loading page please wait..."})
-                    axios.get(url + "users").then((data) => {
-                        setUsers(data.data.filter(data => data.email !== user.email))
-                        setPop('')
-                    }).catch(err => { setPop({type:"error",message:err.message}) })
-                    //fetch user chats from database
-                    axios.get(url + "chats/" + user.email).then((data) => {
-                        setChats(data.data)
-                    }).catch(err => { setPop({type:"error", message:err.message}) })
-                    //send online status
-                    socket.on('chat', (data) => {
-                        setChats((chats) => {
-                            return [...chats, data]
-                        });
-                        receiveTone.play()
-                    });
-                })
-            }
-            //..............................................
-        } catch (err) { console.log(err) }
+        if (user) {
+            socketIo()
+            window.addEventListener('online', () => { socketIo() })
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [user])
+
     return (
         <Contexts.Provider value={{
             page, onlineUsers, setPage, users, setUsers, url, user, setUser, chats, user2, setUser2,

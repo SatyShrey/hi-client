@@ -42,7 +42,6 @@
         height: calc(100vh - 107px);
         overflow: scroll;
         scrollbar-width: none;
-        color: var(--light);
         width: fit-content;
         margin: auto;
         margin-top: 3px;
@@ -57,9 +56,12 @@
         transition: .5s;
         padding: 0px 3px;
         border-radius: 20px;
+        color: var(--light);
     }
     .userBar:hover{
-        background-color: rgba(0, 0, 0, .3);
+        background-color: rgb(0, 0, 0);
+        b{color: var(--blue);}
+        i{color: var(--light);}
     }
     .userBar div{
         width: 100%;

@@ -20,7 +20,7 @@ export default function DashBoard() {
                           <b >{data.name}</b>
                           <i>{data.email}</i>
                         </div>
-                        {onlineUsers.includes(data.email) ? <small style={{color:"greenyellow"}}>online</small> : <small style={{color:"gray"}}>offline</small> }
+                        {onlineUsers.includes(data.email) ? <small style={{color:"greenyellow"}}>online</small> : '' }
                     </div>
                 )}
             </div>
