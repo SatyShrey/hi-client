@@ -23,9 +23,10 @@ export function Provider({ children }) {
 
     function socketIo() {
 
-        const socket = io.connect(url, ({ query: { email: user.email } }));
+        const socket = io(url);
         socket.on('connect', () => {
-
+            //online
+            socket.emit('online',user.email)
             //fetch online users from socket.io-server
             socket.on('onlineUsers', (data) => {
                 setOnlineUsers(data)
@@ -82,8 +83,7 @@ export function Provider({ children }) {
         if (user) {
             socketIo()
             window.addEventListener('online', () => {
-                const socket = io.connect(url, ({ query: { email: user.email } }));
-                console.log(socket.id)
+                console.log(io(url).emit('online',user.email))
           })
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
