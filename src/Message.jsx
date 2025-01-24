@@ -1,5 +1,5 @@
 import { useContext, useEffect, useRef, useState } from "react";
-import { ChatLeftHeartFill, ChevronLeft, Person } from "react-bootstrap-icons";
+import { ChevronLeft, Person, SendFill } from "react-bootstrap-icons";
 import { Contexts } from "./Contexts";
 import axios from "axios";
 import './Message.css'
@@ -43,7 +43,7 @@ export default function Message(){
             </div>
             <form onSubmit={formSubmit} className="messageForm bgLight">
                 <textarea placeholder="Write a message..." onChange={(e)=>{setChat(e.target.value)}}></textarea>
-                {chat && <button type="submit"><ChatLeftHeartFill size={30}/></button>}
+                {chat && <button type="submit"><SendFill size={30}/></button>}
             </form>
         </div>
     )

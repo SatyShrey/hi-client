@@ -93,8 +93,11 @@
         box-shadow: inset 0 0 7px var(--blue);
     }
     .messageForm button{
-        margin: 4px;
         *{color: var(--dark);}
+        rotate: 42deg;
+        margin-right: 10px;
+        margin-left: -5px;
+        background-color: transparent;
     }
 }
 @media only screen and (max-width:300px){

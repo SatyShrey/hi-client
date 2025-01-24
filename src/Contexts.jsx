@@ -15,7 +15,7 @@ export function Provider({ children }) {
     const [user, setUser] = useState()
     const [user2, setUser2] = useState()
     const [pop, setPop] = useState('')
-    const [onlineUsers, setOnlineUsers] = useState()
+    const [onlineUsers, setOnlineUsers] = useState([])
     const sendTone = new Audio(send)
     const receiveTone = new Audio(receive)
     const [status, setStatus] = useState('')
