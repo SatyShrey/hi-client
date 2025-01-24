@@ -66,7 +66,7 @@ export function Provider({ children }) {
             });
         })
         //disconnect the client from server
-        window.addEventListener('offline',()=>{socket.disconnect()})
+        //window.addEventListener('offline',()=>{socket.disconnect()})
     }
 
     //check the logged in user
