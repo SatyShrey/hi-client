@@ -34,6 +34,7 @@ export function Provider({ children }) {
             //fetch recent online user
             socket.on('online', (data) => {
                 setOnlineUsers((onlineUsers) => {
+                    console.log(data)
                     return [...onlineUsers, data]
                 })
             })
