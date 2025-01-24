@@ -39,10 +39,10 @@ export function Provider({ children }) {
             })
 
             //offline user remove from the online user array
-            socket.on('offline', async(data) => {
-                var a=onlineUsers
-                await a.pop(data)
-                setOnlineUsers(a)
+            socket.on('offline', (data) => {
+                setOnlineUsers((onlineUsers) => {
+                    return onlineUsers.filter(a => a !== data)
+                })
             })
 
             //fetch all users from database
