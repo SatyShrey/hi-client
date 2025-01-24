@@ -80,7 +80,7 @@ export function Provider({ children }) {
 
     useEffect(() => {
         if (user) {
-            try{socketIo()}catch(er){console.log(er)}
+            socketIo()
             window.addEventListener('online', () => { socketIo() })
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
