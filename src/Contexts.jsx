@@ -18,6 +18,7 @@ export function Provider({ children }) {
     const [onlineUsers, setOnlineUsers] = useState()
     const sendTone = new Audio(send)
     const receiveTone = new Audio(receive)
+    const [status, setStatus] = useState('')
     let url = "https://chatapp-vspu.onrender.com/"
     //url="http://localhost:6060/"
 
@@ -26,7 +27,7 @@ export function Provider({ children }) {
         const socket = io(url);
         socket.on('connect', () => {
             //online
-            socket.emit('online',user.email)
+            socket.emit('online', user.email)
             //fetch online users from socket.io-server
             socket.on('onlineUsers', (data) => {
                 setOnlineUsers(data)
@@ -65,11 +66,17 @@ export function Provider({ children }) {
             });
         })
         //disconnect the client from server
-        window.addEventListener('offline',()=>{socket.disconnect()})
+        window.addEventListener('offline', () => { socket.disconnect() })
     }
 
     //check the logged in user
     useEffect(() => {
+        window.addEventListener('online', () => {
+            setStatus('online')
+        })
+        window.addEventListener('offline', () => {
+            setStatus('offline')
+        })
         if (sessionStorage.getItem('email') && sessionStorage.getItem('name')) {
             setUser({
                 name: sessionStorage.getItem("name"),
@@ -80,11 +87,15 @@ export function Provider({ children }) {
     }, [])
 
     useEffect(() => {
+        if (status === 'online') {
+            io(url).emit('online', user.email)
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [status])
+
+    useEffect(() => {
         if (user) {
             socketIo()
-            window.addEventListener('online', () => {
-                console.log(io(url).emit('online',user.email))
-          })
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [user])
