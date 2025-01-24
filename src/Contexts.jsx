@@ -33,14 +33,13 @@ export function Provider({ children }) {
 
             //fetch recent online user
             socket.on('online', (data) => {
-                console.log(data)
                 setOnlineUsers((onlineUsers) => {
                     return [...onlineUsers, data]
                 })
             })
 
             //offline user remove from the online user array
-            socket.on('offline', (data) => {console.log(data+"gone offline");
+            socket.on('offline', (data) => {
                 setOnlineUsers((onlineUsers) => {
                     return onlineUsers.filter(a => a !== data)
                 })
@@ -49,7 +48,6 @@ export function Provider({ children }) {
             //fetch all users from database
             setPop({ type: "loading", theme: ["rgb(0, 185, 255)", "rgb(34,34,43)"], message: "Loading page please wait..." })
             axios.get(url + "users").then((data) => {
-                console.log(data)
                 setUsers(data.data.filter(data => data.email !== user.email))
                 setPop('')
             }).catch(err => { setPop({ type: "error", message: err.message }) })
@@ -66,7 +64,7 @@ export function Provider({ children }) {
             });
         })
         //disconnect the client from server
-        //window.addEventListener('offline',()=>{socket.disconnect()})
+        window.addEventListener('offline',()=>{socket.disconnect()})
     }
 
     //check the logged in user
@@ -83,7 +81,10 @@ export function Provider({ children }) {
     useEffect(() => {
         if (user) {
             socketIo()
-            window.addEventListener('online', () => { socketIo() })
+            window.addEventListener('online', () => {
+                const socket = io.connect(url, ({ query: { email: user.email } }));
+                console.log(socket.id)
+          })
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [user])
