@@ -8,14 +8,17 @@ export default function Message(){
     const{setPage,chats,user2,user,setChat,url,chat,setChats,onlineUsers,sendTone}=useContext(Contexts)
     const[text,setText]=useState('')
     const myRef=useRef()
+
+    //send message
     function formSubmit(e){
         e.preventDefault()
+        sendTone.play();
         setText('Sending...');
         myRef.current.scrollIntoView({behavior:"smooth"});
         axios.post(url+"chat",{p1:user.email,p2:user2.email,txt:chat})
         .then(()=>{
             setChats((chats)=>{return [...chats,{p1:user.email,p2:user2.email,txt:chat}]});
-            setText('');sendTone.play();e.target.reset();setChat('');myRef.current.scrollIntoView({behavior:"smooth"})
+            setText('');e.target.reset();setChat('');myRef.current.scrollIntoView({behavior:"smooth"})
         }).catch((er)=>{setText(er.message)})
     }
     useEffect(()=>{

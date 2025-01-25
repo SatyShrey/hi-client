@@ -22,8 +22,31 @@ export function Provider({ children }) {
     let url = "https://chatapp-vspu.onrender.com/"
     //url="http://localhost:6060/"
 
-    function socketIo() {
 
+    useEffect(() => {
+
+        window.onpopstate = function () {
+           setPage('dashboard')
+            history.pushState(null, null, window.location.href);
+        };history.pushState({ page: 1 }, "title 1", "?page=1");
+
+        window.addEventListener('online', () => {
+            setStatus('online')
+        })
+        window.addEventListener('offline', () => {
+            setStatus('offline')
+        })
+        //check the logged in user
+        if (sessionStorage.getItem('email') && sessionStorage.getItem('name')) {
+            setUser({
+                name: sessionStorage.getItem("name"),
+                email: sessionStorage.getItem("email")
+            })
+            setPage('dashboard');
+        }
+    }, [])
+
+    function socketIo() {
         const socket = io(url);
         socket.on('connect', () => {
             //online
@@ -68,23 +91,6 @@ export function Provider({ children }) {
         //disconnect the client from server
         window.addEventListener('offline', () => { socket.disconnect() })
     }
-
-    //check the logged in user
-    useEffect(() => {
-        window.addEventListener('online', () => {
-            setStatus('online')
-        })
-        window.addEventListener('offline', () => {
-            setStatus('offline')
-        })
-        if (sessionStorage.getItem('email') && sessionStorage.getItem('name')) {
-            setUser({
-                name: sessionStorage.getItem("name"),
-                email: sessionStorage.getItem("email")
-            })
-            setPage('dashboard');
-        }
-    }, [])
 
     useEffect(() => {
         if (status === 'online') {

@@ -34,7 +34,7 @@ body{
   height: calc(100vh - 60px);
   overflow-y: scroll;
   scrollbar-width: none;
-  animation: anim 1s;
+  animation: anim .7s;
 }
 
 button {

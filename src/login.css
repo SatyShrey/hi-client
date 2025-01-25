@@ -39,10 +39,11 @@
         font-weight: 700;
         margin-bottom: 10px;
         color: var(--dark);
+        transition: 0.3s;
     }
     button:active{
         color: red;
-        font-size: large;
+        transform: scale(.9);
     }
     u{
         color: blue;
