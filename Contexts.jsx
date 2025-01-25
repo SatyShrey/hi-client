@@ -15,18 +15,41 @@ export function Provider({ children }) {
     const [user, setUser] = useState()
     const [user2, setUser2] = useState()
     const [pop, setPop] = useState('')
-    const [onlineUsers, setOnlineUsers] = useState()
+    const [onlineUsers, setOnlineUsers] = useState([])
     const sendTone = new Audio(send)
     const receiveTone = new Audio(receive)
+    const [status, setStatus] = useState('')
     let url = "https://chatapp-vspu.onrender.com/"
     //url="http://localhost:6060/"
 
-    function socketIo() {
 
+    useEffect(() => {
+        //back button
+        window.onpopstate = function () {
+            history.pushState(null, null, window.location.href);
+        };history.pushState({ page: 1 }, "title 1", "?page=1");
+
+        window.addEventListener('online', () => {
+            setStatus('online')
+        })
+        window.addEventListener('offline', () => {
+            setStatus('offline')
+        })
+        //check the logged in user
+        if (localStorage.getItem('email') && localStorage.getItem('name')) {
+            setUser({
+                name: localStorage.getItem("name"),
+                email: localStorage.getItem("email")
+            })
+            setPage('dashboard');
+        }
+    }, [])
+
+    function socketIo() {
         const socket = io(url);
         socket.on('connect', () => {
             //online
-            socket.emit('online',user.email)
+            socket.emit('online', user.email)
             //fetch online users from socket.io-server
             socket.on('onlineUsers', (data) => {
                 setOnlineUsers(data)
@@ -65,26 +88,19 @@ export function Provider({ children }) {
             });
         })
         //disconnect the client from server
-        window.addEventListener('offline',()=>{socket.disconnect()})
+        window.addEventListener('offline', () => { socket.disconnect() })
     }
 
-    //check the logged in user
     useEffect(() => {
-        if (sessionStorage.getItem('email') && sessionStorage.getItem('name')) {
-            setUser({
-                name: sessionStorage.getItem("name"),
-                email: sessionStorage.getItem("email")
-            })
-            setPage('dashboard');
+        if (status === 'online') {
+            io(url).emit('online', user.email)
         }
-    }, [])
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [status])
 
     useEffect(() => {
         if (user) {
             socketIo()
-            window.addEventListener('online', () => {
-                io(url).emit('online',user.email)
-          })
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [user])

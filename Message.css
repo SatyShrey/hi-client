@@ -1,0 +1,112 @@
+
+.message{
+    margin-top: 1px;
+    .receiverName{
+        *{color: var(--dark);}
+        display: flex;
+        align-items: center;
+        column-gap: 9px;
+        width: 500px;
+        margin: auto;
+        max-width: 100vw;
+        padding: 2px;
+        background-color: var(--light);
+    }
+    .receiverName div small{
+        display: block;
+        font-size: small;
+    }
+    .receiverName button{
+        background-color: transparent;
+        transition: .5s;
+        border-radius: 7px;
+    }
+    .receiverName button:hover{
+        background-color: rgba(0,0,0,.5);
+        *{color: var(--light);}
+    }
+    .receiverName img{
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        border: 1px solid grey;
+    }
+    .messageBox{
+        height: calc(100vh - 163px);
+        overflow-y: scroll;
+        scrollbar-width: none;
+        width: 500px;
+        max-width: 100vw;
+        margin: auto;
+    }
+    .messageBox .ref{
+        height:40px;
+        clear:both;
+        text-align:right;
+        color: var(--orange);
+    }
+    pre{
+        clear: both;
+        max-width: 80%;
+        overflow-wrap: break-word;
+        white-space: pre-wrap;
+        margin: 2px;
+        padding: 4px;
+        color: var(--dark);
+    }
+    .p1{
+        float: right;
+        border-radius: 10px 10px 0px 10px;
+        background-color: var(--blue);
+    }
+    .p2{
+        float: left;
+        border-radius: 0px 10px 10px 10px;
+        background-color:white;
+    }
+    .messageForm{
+        display: flex;
+        align-items: center;
+        width: 500px;
+        max-width: 100vw;
+        overflow: hidden;
+        margin: auto;
+        background-color: var(--light);
+    }
+    .messageForm textarea{
+        width: 100%;
+        height: 50px;
+        padding: 4px;
+        resize: none;
+        border: none;
+        margin: 3px;
+        border-radius: 10px;
+        scrollbar-width:thin;
+        outline: 9px solid transparent;
+        transition: .7s;
+        color: var(--dark);
+        font-weight: 500;
+    }
+    .messageForm textarea:focus{
+        outline: 2px solid var(--blue);
+    }
+    .messageForm button{
+        *{color: var(--dark);}
+        rotate: 42deg;
+        margin-right: 10px;
+        margin-left: -5px;
+        transition: 0.3s;
+        background-color: transparent;
+    }
+    .messageForm button:active{
+        transform: scale(.5);
+    }
+}
+@media only screen and (max-width:300px){
+    .receiverName b{
+        font-size: small;
+    }
+    .receiverName div small{
+        font-size:x-small ;
+    }
+}
