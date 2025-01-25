@@ -1,12 +1,11 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { ChevronLeft, Person, SearchHeart, SendFill } from "react-bootstrap-icons";
 import { Contexts } from "./Contexts";
-import axios from "axios";
 import './Message.css'
 export default function Message() {
 
-    const { setPage, chats, user2, user, setChat, url, chat, setChats, onlineUsers, sendTone, users
-        , setUser2
+    const { setPage, chats, user2, user, setChat, chat, onlineUsers, sendTone, users
+        , setUser2,sendMessage,setChats
     } = useContext(Contexts)
     const [search, setSearch] = useState('')
     const [text, setText] = useState('')
@@ -26,11 +25,8 @@ export default function Message() {
         sendTone.play();
         setText('Sending...');
         myRef.current.scrollIntoView({ behavior: "smooth" });
-        axios.post(url + "chat", { p1: user.email, p2: user2.email, txt: chat })
-            .then(() => {
-                setChats((chats) => { return [...chats, { p1: user.email, p2: user2.email, txt: chat }] });
-                setText(''); e.target.reset(); setChat(''); myRef.current.scrollIntoView({ behavior: "smooth" })
-            }).catch((er) => { setText(er.message) })
+        //send message
+        sendMessage(setText,myRef,e,user,user2,setChats,{ p1: user.email, p2: user2.email, txt: chat })
     }
     useEffect(() => {
         myRef.current.scrollIntoView()
