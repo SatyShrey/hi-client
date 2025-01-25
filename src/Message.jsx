@@ -8,6 +8,14 @@ export default function Message(){
     const{setPage,chats,user2,user,setChat,url,chat,setChats,onlineUsers,sendTone}=useContext(Contexts)
     const[text,setText]=useState('')
     const myRef=useRef()
+    //prevent back button click
+    useEffect(()=>{
+        window.onpopstate = function () {
+            {setPage('dashboard')}
+             history.pushState(null, null, window.location.href);
+         };history.pushState({ page: 1 }, "title 1", "?page=1"); 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[])
 
     //send message
     function formSubmit(e){

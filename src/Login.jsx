@@ -26,8 +26,8 @@ export default function Login(){
         setPop({ type:"loading", theme:["rgb(0, 185, 255)","rgb(34,34,43)"], message:"Logging in please wait..."})
         axios.get(url+`login/${email.toLowerCase()}/${password}`).then((data)=>{
             if(typeof(data.data)=="object"){
-                sessionStorage.setItem('email',data.data.email)
-                sessionStorage.setItem('name',data.data.name)
+                localStorage.setItem('email',data.data.email)
+                localStorage.setItem('name',data.data.name)
                 setPop({ type:"success", message:"Login success..."});
                 setUser(data.data);
                 setPage("dashboard");

@@ -24,9 +24,8 @@ export function Provider({ children }) {
 
 
     useEffect(() => {
-
+        //back button
         window.onpopstate = function () {
-           setPage('dashboard')
             history.pushState(null, null, window.location.href);
         };history.pushState({ page: 1 }, "title 1", "?page=1");
 
@@ -37,10 +36,10 @@ export function Provider({ children }) {
             setStatus('offline')
         })
         //check the logged in user
-        if (sessionStorage.getItem('email') && sessionStorage.getItem('name')) {
+        if (localStorage.getItem('email') && localStorage.getItem('name')) {
             setUser({
-                name: sessionStorage.getItem("name"),
-                email: sessionStorage.getItem("email")
+                name: localStorage.getItem("name"),
+                email: localStorage.getItem("email")
             })
             setPage('dashboard');
         }

@@ -10,7 +10,7 @@ export default function Header(){
         <header>
             <h1><ChatRightHeartFill/>Hii.</h1>
             {user && <button onClick={()=>{setPop({ type:"confirm", task:()=>{
-                sessionStorage.clear();location.reload()
+                localStorage.clear();location.reload()
                 },message:"Are you sure to logout?"})}}><Power size="27px"/></button>}
         </header>
     )
