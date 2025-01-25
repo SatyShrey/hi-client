@@ -22,14 +22,6 @@ export function Provider({ children }) {
     let url = "https://chatapp-vspu.onrender.com/"
     //url = "http://localhost:6060/"
 
-    
-  useEffect(()=>{
-    document.addEventListener('copy', function(e) {
-      e.preventDefault();
-    });
-    
-  },[])
-
     useEffect(() => {
         //back button
         window.onpopstate = function () {
