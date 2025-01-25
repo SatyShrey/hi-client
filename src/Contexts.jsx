@@ -20,14 +20,21 @@ export function Provider({ children }) {
     const receiveTone = new Audio(receive)
     const [status, setStatus] = useState('')
     let url = "https://chatapp-vspu.onrender.com/"
-    //url="http://localhost:6060/"
+    //url = "http://localhost:6060/"
 
+    
+  useEffect(()=>{
+    document.addEventListener('copy', function(e) {
+      e.preventDefault();
+    });
+    
+  },[])
 
     useEffect(() => {
         //back button
         window.onpopstate = function () {
             history.pushState(null, null, window.location.href);
-        };history.pushState({ page: 1 }, "title 1", "?page=1");
+        }; history.pushState({ page: 1 }, "title 1", "?page=1");
 
         window.addEventListener('online', () => {
             setStatus('online')
@@ -83,27 +90,22 @@ export function Provider({ children }) {
 
             //send online status
             socket.on('chat', (data) => {
+                console.log(data.txt)
                 setChats((chats) => { return [...chats, data] });
                 receiveTone.play()
             });
-        })
-        //disconnect the client from server
-        window.addEventListener('offline', () => { socket.disconnect() })
-    }
 
-    useEffect(() => {
-        if (status === 'online') {
-            io(url).emit('online', user.email)
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [status])
+            //disconnect the client from server
+            window.addEventListener('offline', () => { socket.disconnect() })
+        })
+    }
 
     useEffect(() => {
         if (user) {
             socketIo()
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [user])
+    }, [user, status])
 
     return (
         <Contexts.Provider value={{

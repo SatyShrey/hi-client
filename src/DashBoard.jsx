@@ -16,7 +16,7 @@ export default function DashBoard() {
                     <div className="userBar" key={index}>
                         <img src="" alt="icon" style={{display:"none"}} />
                         <Person size={25}/>
-                        <div onClick={() => { setTimeout(()=>{setUser2(data); setPage('message')},200) }}>
+                        <div onClick={() => { setTimeout(()=>{setUser2(data); setPage('message')},100) }}>
                           <b >{data.name}</b>
                           <i>{data.email}</i>
                         </div>
