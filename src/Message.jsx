@@ -49,6 +49,7 @@ export default function Message() {
                             <img src="" alt="icon" style={{ display: "none" }} />
                             <Person size={25} />
                             <div onClick={() => { setUser2(data) }}>
+                                <span></span>
                                 <b >{data.name}</b>
                                 <i>{data.email}</i>
                             </div>

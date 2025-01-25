@@ -59,6 +59,11 @@
         padding: 0px 3px;
         border-radius: 20px;
         color: var(--light);
+        position: relative;
+    }
+    .userBar span{
+        position: absolute;
+        top: 0;right: 0;left: 0;bottom: 0;
     }
     .userBar:active{
         transform: scale(.9);

@@ -14,9 +14,11 @@ export default function DashBoard() {
             <div className="usersName">
                 {users && users.filter(a => a.name.toLowerCase().includes(search)).map((data, index) =>
                     <div className="userBar" key={index}>
+                        <span></span>
                         <img src="" alt="icon" style={{display:"none"}} />
                         <Person size={25}/>
                         <div onClick={() => { setTimeout(()=>{setUser2(data); setPage('message')},100) }}>
+                        <span></span>
                           <b >{data.name}</b>
                           <i>{data.email}</i>
                         </div>
