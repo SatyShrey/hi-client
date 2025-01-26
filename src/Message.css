@@ -2,103 +2,129 @@
     margin-top: 1px;
     display: flex;
     justify-content: space-around;
-    
-.section1{
-    width: 400px; 
-    .searchBar{
-        margin: auto;
-        width: 350px;
-        max-width: 95vw;
-        display: flex;
-        border-radius:20px;
-        overflow: hidden;
-        align-items: center;
-        background-color: var(--light);
-        padding: 3px;
-        margin-top: 9px;
-        outline: 9px solid transparent;
-        transition: .7s;
-        *{color: var(--dark)}
-    }
-    .searchBar span{
-        margin: 3px;
-    }
-    .searchBar:focus-within{
-        outline: 3px solid var(--blue);
-    }
-    small{
-        font-size:small;
-    }
-    input{
-        width: 100%;
-        border: none;
-        outline: none;
-        font-weight: 500;
-        height: 34px;
-        border-radius: 17px;
-        padding-left: 5px;
-        background-color: transparent;
-    }
-    
-    .usersName{
-        height: calc(100vh - 113px);
-        overflow: scroll;
-        scrollbar-width: none;
-        width: fit-content;
-        margin: auto;
-        margin-top: 3px;
-    }
-    .userBar{
-        display: flex;
-        align-items: center;
+
+    .section1 {
         width: 400px;
-        max-width: 97vw;
-        cursor: pointer;
-        margin-top: 4px;
-        transition: .5s;
-        padding: 0px 3px;
-        border-radius: 20px;
-        color: var(--light);
-        position: relative;
+
+        .searchBar {
+            margin: auto;
+            width: 350px;
+            max-width: 95vw;
+            display: flex;
+            border-radius: 20px;
+            overflow: hidden;
+            align-items: center;
+            background-color: var(--light);
+            padding: 3px;
+            margin-top: 9px;
+            outline: 9px solid transparent;
+            transition: .7s;
+
+            * {
+                color: var(--dark)
+            }
+        }
+
+        .searchBar span {
+            margin: 3px;
+        }
+
+        .searchBar:focus-within {
+            outline: 3px solid var(--blue);
+        }
+
+        small {
+            font-size: small;
+        }
+
+        input {
+            width: 100%;
+            border: none;
+            outline: none;
+            font-weight: 500;
+            height: 34px;
+            border-radius: 17px;
+            padding-left: 5px;
+            background-color: transparent;
+        }
+
+        .usersName {
+            height: calc(100vh - 113px);
+            overflow: scroll;
+            scrollbar-width: none;
+            width: fit-content;
+            margin: auto;
+            margin-top: 3px;
+        }
+
+        .userBar {
+            display: flex;
+            align-items: center;
+            width: 400px;
+            max-width: 97vw;
+            cursor: pointer;
+            margin-top: 4px;
+            transition: .5s;
+            padding: 0px 3px;
+            border-radius: 20px;
+            color: var(--light);
+            position: relative;
+        }
+
+        .userBar span {
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            bottom: 0;
+        }
+
+        .userBar:active {
+            transform: scale(.9);
+        }
+
+        .userBar:hover {
+            background-color: rgb(0, 0, 0);
+
+            b {
+                color: var(--blue);
+            }
+
+            i {
+                color: var(--light);
+            }
+        }
+
+        .userBar div {
+            width: 100%;
+            padding: 5px 3px;
+        }
+
+        .userBar div i {
+            display: flex;
+            font-size: x-small;
+            color: var(--blue);
+        }
+
+        img {
+            margin-right: 4px;
+            height: 30px;
+            width: 30px;
+            border-radius: 50%;
+            border: 1px solid grey;
+        }
     }
-    .userBar span{
-        position: absolute;
-        top: 0;right: 0;left: 0;bottom: 0;
-    }
-    .userBar:active{
-        transform: scale(.9);
-    }
-    .userBar:hover{
-        background-color: rgb(0, 0, 0);
-        b{color: var(--blue);}
-        i{color: var(--light);}
-    }
-    .userBar div{
-        width: 100%;
-        padding:5px 3px;
-    }
-    .userBar div i{
-        display: flex;
-        font-size: x-small;
-        color: var(--blue);
-    }
-    img{
-       margin-right: 4px;
-       height: 30px;
-       width: 30px;
-       border-radius: 50%;
-       border: 1px solid grey;
-    }
-}
-    .section2{
+
+    .section2 {
         width: 800px;
         max-width: 50%;
         background-color: rgba(0, 0, 0, .3);
+
         .receiverName {
             * {
                 color: var(--dark);
             }
-    
+
             display: flex;
             align-items: center;
             column-gap: 9px;
@@ -107,33 +133,33 @@
             padding: 2px;
             background-color: var(--light);
         }
-    
+
         .receiverName div small {
             display: block;
             font-size: small;
         }
-    
+
         .receiverName button {
             background-color: transparent;
             transition: .5s;
             border-radius: 7px;
         }
-    
+
         .receiverName button:hover {
             background-color: rgba(0, 0, 0, .5);
-    
+
             * {
                 color: var(--light);
             }
         }
-    
+
         .receiverName img {
             width: 30px;
             height: 30px;
             border-radius: 50%;
             border: 1px solid grey;
         }
-    
+
         .messageBox {
             height: calc(100vh - 163px);
             overflow-y: scroll;
@@ -141,14 +167,14 @@
             width: calc(100% - 2px);
             margin: auto;
         }
-    
+
         .messageBox .ref {
             height: 40px;
             clear: both;
             text-align: right;
             color: var(--orange);
         }
-    
+
         pre {
             clear: both;
             max-width: 80%;
@@ -158,28 +184,38 @@
             padding: 4px;
             color: var(--dark);
         }
-    
+
+        pre div {
+            display: flex;
+            flex-direction: column;
+            width: fit-content;
+            max-width: 200px;
+            overflow: hidden;
+        }
+        pre img{
+            width: 80px;
+        }
+
         .p1 {
             float: right;
             border-radius: 10px 10px 0px 10px;
             background-color: var(--blue);
         }
-    
+
         .p2 {
             float: left;
             border-radius: 0px 10px 10px 10px;
             background-color: white;
         }
-    
+
         .messageForm {
             display: flex;
             align-items: center;
             width: 100%;
             overflow: hidden;
             margin: auto;
-            background-color: var(--light);
         }
-    
+
         .messageForm textarea {
             width: 100%;
             height: 50px;
@@ -194,46 +230,90 @@
             color: var(--dark);
             font-weight: 500;
         }
-    
+
         .messageForm textarea:focus {
             outline: 2px solid var(--blue);
         }
-    
+
+        .imgForm {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .imgForm {
+            .file,.submit{ 
+                width: 50px;
+                height: 50px;
+                margin: 0px 3px;
+                overflow: hidden;
+                position: relative;
+                display: flex;
+                align-items: center;
+                input{
+                    padding: 50px;
+                }
+                label{
+                    position: absolute;
+                    background-color:var(--light);
+                    border-radius: 5px;
+                    box-shadow: 0px 0px 10px black inset;
+                    top: 0;
+                    width: 100%;
+                    height: 100%;
+                    display: flex;
+                }
+            }
+        }
+
+        .formDiv {
+            display: flex;
+            background-color: var(--light);
+            align-items: center;
+        }
+
+        .imgForm button{
+            rotate: 42deg;
+            transition: 0.3s;
+            background-color: transparent;
+        }
+        
         .messageForm button {
             * {
                 color: var(--dark);
             }
-    
+
             rotate: 42deg;
             margin-right: 10px;
             margin-left: -5px;
             transition: 0.3s;
             background-color: transparent;
         }
-    
-        .messageForm button:active {
+
+        .messageForm button:active ,.imgForm button:active{
             transform: scale(.5);
         }
     }
 }
 
-@media only screen and (max-width:1000px){
-    .message{
-        .section2{
+@media only screen and (max-width:1000px) {
+    .message {
+        .section2 {
             max-width: 100%;
         }
-        .section1{
+
+        .section1 {
             display: none;
         }
     }
 }
 
 @media only screen and (max-width:300px) {
-    .message{
+    .message {
         .receiverName b {
             font-size: small;
         }
-    
+
         .receiverName div small {
             font-size: x-small;
         }

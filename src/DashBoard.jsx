@@ -3,7 +3,7 @@ import { Person, SearchHeart } from "react-bootstrap-icons"
 import { Contexts } from "./Contexts"
 import './Dashboard.css'
 export default function DashBoard() {
-    const { setPage, users, setUser2, onlineUsers } = useContext(Contexts)
+    const { setPage, users, setUser2, onlineUsers,offline } = useContext(Contexts)
     const [search, setSearch] = useState('')
     return (
         <div className="section dashboard">
@@ -22,7 +22,7 @@ export default function DashBoard() {
                           <b >{data.name}</b>
                           <i>{data.email}</i>
                         </div>
-                        {onlineUsers.includes(data.email) ? <small style={{color:"greenyellow"}}>online</small> : '' }
+                        {onlineUsers.includes(data.email) ? <small style={{color:"greenyellow"}}>online</small> : <small style={{color:"grey"}}>{offline}</small> }
                     </div>
                 )}
             </div>
