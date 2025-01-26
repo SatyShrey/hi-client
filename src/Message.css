@@ -204,7 +204,7 @@
         .imgPrevDiv{
             position: absolute;
             padding: 3px;
-            bottom: 67px;
+            bottom: 70px;
             width: 100%;
             display: flex;
             justify-content: center;
@@ -219,7 +219,7 @@
             padding: 3px;
             border-radius: 4px;
             font-size: large;
-          display: flex;
+            height:fit-content;
         }
 
         .messageForm {
