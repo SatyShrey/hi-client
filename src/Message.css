@@ -216,10 +216,10 @@
             max-width: calc(100vw - 70px);
         }
         .imgPrevDiv button{
-            padding: 3px;
-            border-radius: 4px;
-            font-size: large;
-            height:fit-content;
+            padding: 7px;
+            border-radius: 50%;
+            font-size: large;    height:fit-content;
+
         }
 
         .messageForm {
