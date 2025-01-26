@@ -20,7 +20,7 @@ export function Provider({ children }) {
     const receiveTone = new Audio(receive)
     const [sendMessage, setSendMessage] = useState()
     const [sendImg, setSendImg] = useState()
-    const[offline,setOffline]=useState('offline')
+    const [offline, setOffline] = useState('offline')
     let url = "https://chatapp-vspu.onrender.com/"
     //url = "http://localhost:6060/"
 
@@ -45,11 +45,11 @@ export function Provider({ children }) {
     function socketIo(user1) {
         const socket = io(url, { query: { userId: user1.email } });
         socket.on('connect', () => {
-            //online user list
+            //........................online user list.....................
             socket.on('roomList', (userlist) => {
                 setOnlineUsers(userlist)
             });
-
+            //...................send message function.....................
             setSendMessage(() => {
                 return function (setText, myRef, e, user, user2, setChats, chat) {
                     axios.post(url + "chat", chat)
@@ -62,6 +62,30 @@ export function Provider({ children }) {
                         }).catch((er) => { setText(er.message) })
                 }
             })
+            //........................setSendImg............................
+            setSendImg(() => {
+                return function (setText,img,setImg,user,user2,e) {
+                    const formData = new FormData();
+
+                    formData.append('photo', img);
+
+                    fetch(url + `upload/${user.email}/${user2.email}`, {
+                        method: 'POST',
+                        body: formData
+                    })
+                        .then(response => response.text())
+                        .then(result => {
+                            console.log(result)
+                        })
+                        .catch(error => {
+                            setPop({ type: "error", message: error.message })
+                        })
+                        .finally(()=>{
+                            setText('')
+                            setImg('')
+                            e.target.reset()})
+                }
+            })
             //fetch messages from database
             axios.get(url + 'chats/' + user.email).then(data => {
                 setChats(data.data)
@@ -71,16 +95,20 @@ export function Provider({ children }) {
             socket.on('message', (message) => {
                 setChats((chats) => {
                     return [...chats, message]
-                });
-                if(message.p1===user.email){setSendImg('received')}
-                else{receiveTone.play()}
+                }); receiveTone.play();
             });
-            
+            //receive message
+            socket.on('returnme', (message) => {
+                setChats((chats) => {
+                    return [...chats, message]
+                });
+            });
+
             //disconnect from server
             socket.on('disconnect', () => {
                 socket.disconnect()
             });
-            
+
         });
         //fetch all users from database
         setPop({
@@ -103,7 +131,7 @@ export function Provider({ children }) {
         window.addEventListener('online', () => {
             console.log('online')
             setOffline('offline')
-            if(user){
+            if (user) {
                 socketIo(user)
                 console.log('server re-started')
             }
@@ -120,7 +148,7 @@ export function Provider({ children }) {
     return (
         <Contexts.Provider value={{
             page, onlineUsers, setPage, users, setUsers, url, user, setUser, chats, user2, setUser2,
-            chat, setChats, setChat, pop, setPop, sendTone, sendMessage,offline,sendImg, setSendImg
+            chat, setChats, setChat, pop, setPop, sendTone, sendMessage, offline, sendImg,
         }}>
             {children}
         </Contexts.Provider>

@@ -1,41 +1,40 @@
 import { useContext, useEffect, useRef, useState } from "react";
-import { ChevronLeft,  ImageFill, Person, SearchHeart, SendFill } from "react-bootstrap-icons";
+import { ChevronLeft, ImageFill, Person, SearchHeart, SendFill } from "react-bootstrap-icons";
 import { Contexts } from "./Contexts";
 import './Message.css'
 export default function Message() {
 
     const { setPage, chats, user2, user, setChat, chat, onlineUsers, sendTone, users
-        , setUser2, sendMessage, setChats, offline, url, sendImg, setSendImg,setPop
+        , setUser2, sendMessage, setChats, offline, url, sendImg,setPop
     } = useContext(Contexts)
     const [search, setSearch] = useState('')
     const [text, setText] = useState('')
     const myRef = useRef()
     const imgForm = useRef()
-    const[img,setImg]=useState()
+    const [img, setImg] = useState()
+    const[imageData,setImageData]=useState()
     //.......................upload pic.............................
     function picSubmit(e) {
         e.preventDefault()
-        setSendImg('sent')
-        setText("Sendng...")
-        const formData = new FormData();
-        const fileField = document.getElementById('photo');
+        sendTone.play();
+        setText('Sending...');
+        myRef.current.scrollIntoView({ behavior: "smooth" });
+        sendImg(setText, imageData,setImg, user, user2, e)
+    }
 
-        formData.append('photo', fileField.files[0]);
-
-        fetch(url + `upload/${user.email}/${user2.email}`, {
-            method: 'POST',
-            body: formData
-        })
-            .then(response => response.text())
-            .then(result => {
-                console.log(result)
-                setText('')
-            })
-            .catch(error => {
-                setText('')
-                setPop({type:"error",message:error.message})
-            });
-            setImg('')
+    function previewImg(e) {
+        const file = e.target.files[0];
+        setImageData(e.target.files[0]);
+        console.log(file)
+        if (file) {
+         if(file.size<= 500 * 1024){
+            const reader = new FileReader();
+            reader.onload = function(e) {
+              setImg(e.target.result);
+            };
+            reader.readAsDataURL(file);
+         }else{setPop({type:"error",message:"Sorry:Enter file, size must be 500kb or less"})}
+        }
     }
 
     //..............................................................
@@ -55,6 +54,7 @@ export default function Message() {
     //send message
     function formSubmit(e) {
         e.preventDefault()
+        if(img){sendImg(setText, imageData,setImg, user, user2, e)}
         sendTone.play();
         setText('Sending...');
         myRef.current.scrollIntoView({ behavior: "smooth" });
@@ -90,8 +90,7 @@ export default function Message() {
             <div className="section2">
                 <div className="receiverName">
                     <button onClick={() => setPage("dashboard")}><ChevronLeft size={30} /></button>
-                    <img style={{ display: "none" }} alt="icon" />
-                    <Person size={25} />
+                    <img src={url+"uploads/"+user2.pic} alt="icon" />
                     <div>
                         <b>{user2.name}</b>
                         {onlineUsers.includes(user2.email) ? <small style={{ color: "green" }}>online</small> : <small style={{ color: "grey" }}>{offline}</small>}
@@ -101,22 +100,33 @@ export default function Message() {
                     {chats && chats
                         .filter(e => e.p1 == user2.email || e.p2 == user2.email)
                         .map((chat, i) => {
-                            if (chat.p1 === user.email) { return <pre key={i} className="p1">{chat.file ? <div className="img"><img src={url + "download/" + chat.file} /> </div> : chat.txt}</pre> }
-                            else if (chat.p1 === user2.email) { return <pre key={i} className="p2">{chat.file ? <div className="img"><img src={url + "download/" + chat.file} /> </div> : chat.txt}</pre> }
+                            if (chat.p1 === user.email) {
+                                 return <pre key={i} className="p1">{chat.file 
+                                 ? <div className="img"><img src={url + "download/" + chat.file} /></div> : chat.txt}</pre> }
+                            else if (chat.p1 === user2.email) { 
+                                return <pre key={i} className="p2">{chat.file 
+                                    ? <div className="img"><img src={url + "download/" + chat.file} /> </div> : chat.txt}</pre> }
                         }
                         )}
                     <div className="ref" ref={myRef}>{text}</div>
                 </div>
                 <div className="formDiv">
+                    {img && <div className="imgPrevDiv">
+                        <img src={img} alt="img" />
+                            <button onClick={()=>{setImg('');imgForm.current.reset()}}>❌</button>
+                    </div>}
                     <form onSubmit={formSubmit} className="messageForm bgLight">
-                        <textarea placeholder="Write a message..." onChange={(e) => { setChat(e.target.value);setImg('') }}></textarea>
+                        <textarea placeholder="Write a message..." onChange={(e) => { setChat(e.target.value);}}></textarea>
                         {chat && <button type="submit"><SendFill size={30} /></button>}
                     </form>
-                   { !chat &&  <form ref={imgForm} className="imgForm" onSubmit={picSubmit} encType="multipart/form-data">
-                         
-                            <div className="file"><label htmlFor="photo"> <ImageFill size={50}/> </label> <input onChange={(e) => {setImg(e.target.value) }} type="file" name="photo" id="photo" /> </div>
-                           {img && <div className="submit"><button type="submit" > <SendFill size={30}/> </button></div>}
-                    </form> }
+                    {!chat && <form ref={imgForm} className="imgForm" onSubmit={picSubmit} encType="multipart/form-data">
+
+                        <div className="file">
+                          <label htmlFor="photo"> <ImageFill size={50} /> </label>
+                          <input onChange={previewImg} type="file" name="photo" id="photo" />
+                        </div>
+                        {img && <div className="submit"><button type="submit" > <SendFill size={30} /> </button></div>}
+                    </form>}
                 </div>
             </div>
         </div>

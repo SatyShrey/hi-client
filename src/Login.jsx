@@ -52,7 +52,7 @@ export default function Login(){
     }
     return(
         <div className="section login">
-            <form onSubmit={loginFormSubmit}  onKeyDown={enterClick} className="loginForm">
+            <form onSubmit={loginFormSubmit} encType="multipart/form-data"  onKeyDown={enterClick} className="loginForm">
                 <h2>Login</h2>
                 <input placeholder="Email" onChange={(e)=>{validation(e.target.value,setEmail,/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,setEmailErr,"Input valid email")}} />
                 <small style={{fontSize:fontSize}}>{emailErr}</small>

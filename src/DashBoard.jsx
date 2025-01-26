@@ -1,9 +1,9 @@
 import { useContext, useState } from "react"
-import { Person, SearchHeart } from "react-bootstrap-icons"
+import { SearchHeart } from "react-bootstrap-icons"
 import { Contexts } from "./Contexts"
 import './Dashboard.css'
 export default function DashBoard() {
-    const { setPage, users, setUser2, onlineUsers,offline } = useContext(Contexts)
+    const { setPage, users, setUser2, onlineUsers,offline,url } = useContext(Contexts)
     const [search, setSearch] = useState('')
     return (
         <div className="section dashboard">
@@ -15,8 +15,7 @@ export default function DashBoard() {
                 {users && users.filter(a => a.name.toLowerCase().includes(search)).map((data, index) =>
                     <div className="userBar" key={index}>
                         <span></span>
-                        <img src="" alt="icon" style={{display:"none"}} />
-                        <Person size={25}/>
+                        <img src={url+"uploads/"+data.pic} alt="icon" />
                         <div onClick={() => { setTimeout(()=>{setUser2(data); setPage('message')},100) }}>
                         <span></span>
                           <b >{data.name}</b>
