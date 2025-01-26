@@ -148,7 +148,7 @@
         }
 
         .messageBox {
-            height: calc(100vh - 190px);
+            height: calc(100vh - 200px);
             overflow-y: scroll;
             scrollbar-width: none;
             width: calc(100% - 2px);
@@ -233,7 +233,7 @@
 
         .messageForm textarea {
             width: 100%;
-            height: 50px;
+            height: 60px;
             padding: 4px;
             resize: none;
             border: none;
