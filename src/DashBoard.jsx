@@ -13,11 +13,9 @@ export default function DashBoard() {
             </div>
             <div className="usersName">
                 {users && users.filter(a => a.name.toLowerCase().includes(search)).map((data, index) =>
-                    <div className="userBar" key={index}>
-                        <span></span>
+                    <div className="userBar" key={index} onClick={() => { setTimeout(()=>{setUser2(data); setPage('message')},100) }}>
                         <img src={url+"uploads/"+data.pic} alt="icon" />
-                        <div onClick={() => { setTimeout(()=>{setUser2(data); setPage('message')},100) }}>
-                        <span></span>
+                        <div>
                           <b >{data.name}</b>
                           <i>{data.email}</i>
                         </div>

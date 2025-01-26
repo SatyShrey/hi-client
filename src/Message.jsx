@@ -1,5 +1,5 @@
 import { useContext, useEffect, useRef, useState } from "react";
-import { ChevronLeft, ImageFill, Person, SearchHeart, SendFill } from "react-bootstrap-icons";
+import { ChevronLeft, ImageFill, SearchHeart, SendFill } from "react-bootstrap-icons";
 import { Contexts } from "./Contexts";
 import './Message.css'
 export default function Message() {
@@ -74,11 +74,9 @@ export default function Message() {
                 </div>
                 <div className="usersName">
                     {users && users.filter(a => a.name.toLowerCase().includes(search)).map((data, index) =>
-                        <div className="userBar" key={index}>
-                            <img src="" alt="icon" style={{ display: "none" }} />
-                            <Person size={25} />
-                            <div onClick={() => { setUser2(data) }}>
-                                <span></span>
+                        <div className="userBar" key={index} onClick={() => { setUser2(data) }}>
+                            <img src={url+"uploads/"+data.pic} alt="icon" />
+                            <div>
                                 <b >{data.name}</b>
                                 <i>{data.email}</i>
                             </div>
@@ -97,6 +95,7 @@ export default function Message() {
                     </div>
                 </div>
                 <div className="messageBox">
+                <code style={{color:"red"}}>{JSON.stringify(import.meta.env.VITE_REACT_URL)}</code>
                     {chats && chats
                         .filter(e => e.p1 == user2.email || e.p2 == user2.email)
                         .map((chat, i) => {

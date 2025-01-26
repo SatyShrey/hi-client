@@ -21,9 +21,7 @@
     .searchBar:focus-within{
         outline: 3px solid var(--blue);
     }
-    small{
-        font-size:small;
-    }
+    
     input{
         width: 100%;
         border: none;
@@ -44,22 +42,15 @@
         margin-top: 3px;
     }
     .userBar{
-        display: flex;
-        align-items: center;
-        width: 400px;
-        max-width: 97vw;
-        cursor: pointer;
-        margin-top: 4px;
-        transition: .5s;
-        padding: 0px 3px;
-        border-radius: 20px;
-        color: var(--light);
-        position: relative;
+       margin-top: 10px;
+       width: 400px;
+       max-width: 98vw;
+       position: relative;
+       cursor: pointer;
+       transition: .3s;
+       border-radius: 25px;
     }
-    .userBar span{
-        position: absolute;
-        top: 0;right: 0;left: 0;bottom: 0;
-    }
+
     .userBar:active{
         transform: scale(.9);
     }
@@ -69,19 +60,29 @@
         i{color: var(--light);}
     }
     .userBar div{
-        width: 100%;
-        padding:5px 3px;
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        left: 65px;
+        top: 12px;
+    }
+    small{
+        position: absolute;
+        right: 3px;
+        top: 24px;
     }
     .userBar div i{
-        display: flex;
-        font-size: x-small;
         color: var(--blue);
+        font-size: small;
     }
-    img{
-       margin-right: 4px;
-       height: 30px;
-       width: 30px;
-       border-radius: 50%;
-       border: 1px solid grey;
+    .userBar div b{
+        color: var(--light);
+        font-size: large;
+    }
+    .userBar img{
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      margin:2px
     }
 }

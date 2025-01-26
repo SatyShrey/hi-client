@@ -48,7 +48,7 @@
             background-color: transparent;
         }
 
-        .usersName {
+        .usersName{
             height: calc(100vh - 113px);
             overflow: scroll;
             scrollbar-width: none;
@@ -56,62 +56,49 @@
             margin: auto;
             margin-top: 3px;
         }
-
-        .userBar {
-            display: flex;
-            align-items: center;
-            width: 400px;
-            max-width: 97vw;
-            cursor: pointer;
-            margin-top: 4px;
-            transition: .5s;
-            padding: 0px 3px;
-            border-radius: 20px;
-            color: var(--light);
-            position: relative;
+        .userBar{
+           margin-top: 10px;
+           width: 400px;
+           max-width: 98vw;
+           position: relative;
+           cursor: pointer;
+           transition: .3s;
+           border-radius: 25px;
         }
-
-        .userBar span {
-            position: absolute;
-            top: 0;
-            right: 0;
-            left: 0;
-            bottom: 0;
-        }
-
-        .userBar:active {
+    
+        .userBar:active{
             transform: scale(.9);
         }
-
-        .userBar:hover {
+        .userBar:hover{
             background-color: rgb(0, 0, 0);
-
-            b {
-                color: var(--blue);
-            }
-
-            i {
-                color: var(--light);
-            }
+            b{color: var(--blue);}
+            i{color: var(--light);}
         }
-
-        .userBar div {
-            width: 100%;
-            padding: 5px 3px;
-        }
-
-        .userBar div i {
+        .userBar div{
             display: flex;
-            font-size: x-small;
-            color: var(--blue);
+            flex-direction: column;
+            position: absolute;
+            left: 65px;
+            top: 12px;
         }
-
-        img {
-            margin-right: 4px;
-            height: 30px;
-            width: 30px;
-            border-radius: 50%;
-            border: 1px solid grey;
+        small{
+            position: absolute;
+            right: 3px;
+            top: 24px;
+        }
+        .userBar div i{
+            color: var(--blue);
+            font-size: small;
+        }
+        .userBar div b{
+            color: var(--light);
+            font-size: large;
+        }
+        .userBar img{
+          width: 60px;
+          height: 60px;
+          border-radius: 50%;
+          margin:2px
         }
     }
 
@@ -154,14 +141,14 @@
         }
 
         .receiverName img {
-            width: 30px;
-            height: 30px;
+            width: 57px;
+            height: 57px;
             border-radius: 50%;
             border: 1px solid grey;
         }
 
         .messageBox {
-            height: calc(100vh - 163px);
+            height: calc(100vh - 190px);
             overflow-y: scroll;
             scrollbar-width: none;
             width: calc(100% - 2px);

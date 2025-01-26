@@ -1,5 +1,5 @@
 import axios from "axios";
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState} from "react";
 import { io } from "socket.io-client";
 import receive from "../receive.mp3"
 import send from "../send.mp3"
@@ -8,9 +8,11 @@ import send from "../send.mp3"
 export const Contexts = createContext()
 // eslint-disable-next-line react/prop-types
 export function Provider({ children }) {
+    //let url='http://localhost:6060/'
+    let url ="https://chatapp-vspu.onrender.com/"
     const [page, setPage] = useState('login')
     const [users, setUsers] = useState()
-    const [chats, setChats] = useState([])
+    const [chats, setChats] = useState()
     const [chat, setChat] = useState()
     const [user, setUser] = useState()
     const [user2, setUser2] = useState()
@@ -21,9 +23,6 @@ export function Provider({ children }) {
     const [sendMessage, setSendMessage] = useState()
     const [sendImg, setSendImg] = useState()
     const [offline, setOffline] = useState('offline')
-    let url = "https://chatapp-vspu.onrender.com/"
-    //url = "http://localhost:6060/"
-
     useEffect(() => {
         //back button override
         window.onpopstate = function () {
