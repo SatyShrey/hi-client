@@ -1,4 +1,4 @@
-import { useContext, useState } from "react"
+import { useContext,  useState } from "react"
 import { Contexts } from "./Contexts"
 import axios from "axios"
 import { Eye, EyeSlash } from "react-bootstrap-icons"
@@ -25,16 +25,15 @@ export default function Login(){
        if(password && (/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email))){
         setPop({ type:"loading", theme:["rgb(0, 185, 255)","rgb(34,34,43)"], message:"Logging in please wait..."})
         axios.get(url+`login/${email.toLowerCase()}/${password}`).then((data)=>{
-            if(typeof(data.data)=="object"){
+            if(data.data.result=="success"){
                 localStorage.setItem('email',data.data.email)
                 localStorage.setItem('name',data.data.name)
+                localStorage.setItem('pic',data.data.pic)
                 setPop({ type:"success", message:"Login success..."});
                 setUser(data.data);
                 setPage("dashboard");
             }
-            else if(data.data=="1"){setPop({ type:"error", message:"Error: Invalid credentials."})}
-            else if(data.data=="0"){setPop({ type:"error", message:"Error: User not found"})}
-            else{setPop({ type:"error" , message:"Unknown error"})}
+            else{setPop({ type:"error" , message:data.data})}
          }).catch((err)=>{setPop({ type:"error", message:err.message})})
        }
     }

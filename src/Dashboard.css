@@ -27,14 +27,14 @@
         border: none;
         outline: none;
         font-weight: 500;
-        height: 41px;
+        height: 34px;
         border-radius: 17px;
         padding-left: 5px;
         background-color: transparent;
     }
     
     .usersName{
-        height: calc(100vh - 120px);
+        height: calc(100vh - 113px);
         overflow: scroll;
         scrollbar-width: none;
         width: fit-content;

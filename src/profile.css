@@ -1,0 +1,167 @@
+
+.profile{
+    display: flex;
+    flex-direction: column;
+    background-color: var(--light);
+    width: 400px;
+    max-width: 100vw;
+    margin: auto;
+    margin-top: 10px;
+    height: 400px;
+    max-height: calc(100vh - 90px);
+    overflow: scroll;
+    align-items: center;
+    box-shadow: 0 0 7px white;
+    padding: 5px;
+    position: relative;
+    .back{
+        position: absolute;
+        background-color: var(--dark);
+        left: 5px;
+        *{color:var(--light)}
+        padding: 4px;
+        border-radius: 4px;
+        transition: .3s;
+    }
+    .back:active{
+        transform: scale(.9);
+        *{color: var(--blue);}
+    }
+    .pic{
+        position: relative;
+    }
+    .pic input{
+        display: none;
+    }
+    .pic button{
+        background-color: var(--orange);
+        font-weight: bold;
+        padding: 4px;
+        display: block;
+        margin: auto;
+        margin-bottom: 10px;
+        border-radius: 7px;
+    }
+    .pic label{
+        position: absolute;
+        top: 0px;
+        left:0px;
+        width: 108px;
+        height: 108px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .pic img{
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        border: 4px ridge var(--blue);
+    }
+    .email{
+        color: var(--light);
+        display: flex;
+        align-items: center;
+        column-gap: 4px;
+        background:linear-gradient(black,var(--blue)) ;
+        box-shadow: 0 0 3px var(--dark);
+        padding: 2px 5px;
+        border-radius: 14px;
+    }
+    .email button{
+        background-color: var(--orange);
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        *{color: var(--dark)}
+        transition: .3s;
+    }
+    .email button:active{
+        transform: scale(.9);
+    }
+    .name{
+        font-weight: bold;
+        text-align: center;
+        margin-top: 10px;
+    }
+    .name p{
+        font-size: larger;
+        color:var(--blue);
+        box-shadow: 0px 0px 2px black;
+        border-radius: 14px;
+        padding: 3px 7px;
+    }
+    .name input{
+        display: block;
+        outline: none;
+        border:none;
+        border-bottom: 1px solid var(--blue);
+        background-color: transparent;
+        color: var(--blue);
+        font-size: larger;
+    }
+    .name button{
+        margin: 5px 7px;
+        background: var(--orange);
+        color: var(--dark);
+        padding:7px 4px;
+        border-radius: 10px;
+        box-shadow: 0 0 3px var(--dark);
+        font-weight: bold;
+        transition: .3s;
+    }
+    .name button:active{
+        transform: scale(.9);
+    }
+    .name .cancel{
+        background-color: transparent;
+    }
+    .password{
+        text-align: center;
+        margin-top:10px ;
+    }
+    .password p{
+        font-size: larger;
+    }
+    .password input{
+        display: block;
+        outline: none;
+        border:none;
+        border-bottom: 1px solid var(--blue);
+        background-color: transparent;
+        color: var(--blue);
+        font-size: larger;
+    }
+    .password button{
+        margin: 5px 7px;
+        background: var(--orange);
+        color: var(--dark);
+        padding:7px 4px;
+        border-radius: 10px;
+        box-shadow: 0 0 3px var(--dark);
+        font-weight: bold;
+        transition: .3s;
+    }
+    .password button:active{
+        transform: scale(.9);
+    }
+    .password .cancel{
+        background-color: transparent;
+    }
+    .delete{
+        margin-top: 10px;
+    }
+    .delete button{
+        background-color:var(--light);
+        background-color: rgb(225, 46, 65);
+        margin: 3px;
+        color: var(--light);
+        padding:7px 4px;
+        border-radius: 10px;
+        box-shadow: 0 0 3px var(--dark);
+        font-weight: bold;
+    }
+    .delete button:active{
+        transform: scale(.9);
+    }
+}

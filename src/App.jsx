@@ -6,6 +6,7 @@ import Message from "./Message";
 import DashBoard from "./DashBoard";
 import Signup from "./Signup";
 import Pop from "./Pop";
+import Profile from "./Profile";
 export default function App(){
   const{page,pop}=useContext(Contexts)
   
@@ -16,6 +17,7 @@ export default function App(){
     {page=="signup" && <Signup/>}
     {page=="dashboard" && <DashBoard/>}
     {page=="message" && <Message/>}
+    {page=="profile" && <Profile/>}
     {pop && <Pop message={pop.message} type={pop.type} task={pop.task} theme={pop.theme}/>}
    </div>
   )

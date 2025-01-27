@@ -8,8 +8,8 @@ import send from "../send.mp3"
 export const Contexts = createContext()
 // eslint-disable-next-line react/prop-types
 export function Provider({ children }) {
-    //let url='http://localhost:6060/'
-    let url ="https://chatapp-vspu.onrender.com/"
+    let url='http://localhost:6060/'
+    url ="https://chatapp-vspu.onrender.com/"
     const [page, setPage] = useState('login')
     const [users, setUsers] = useState()
     const [chats, setChats] = useState()
@@ -33,7 +33,8 @@ export function Provider({ children }) {
         if (localStorage.getItem('email') && localStorage.getItem('name')) {
             setUser({
                 name: localStorage.getItem("name"),
-                email: localStorage.getItem("email")
+                email: localStorage.getItem("email"),
+                pic: localStorage.getItem("pic")
             })
             setPage('dashboard');
         }

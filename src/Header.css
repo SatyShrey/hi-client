@@ -12,6 +12,12 @@ header{
         transition: .7s;
         *{color: var(--light);}
     }
+    img{
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        cursor: pointer;
+    }
     button:hover{
         background-color: var(--light);
         *{color: var(--dark);}
